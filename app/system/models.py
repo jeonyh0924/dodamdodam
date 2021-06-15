@@ -5,17 +5,10 @@ from django.db import models
 
 class User(AbstractUser):
     USERTYPE = (
-        ("WORKER", "작업자"),
-        ("EXPORT_WORKER", "출하관리자"),
-        ("IMPORT_WORKER", "입고관리자"),
-        ('OFFICE_WORKER', '사무직'),
+        ('CONSUMER', '소비자'),
         ("SUPERVISOR", "최고관리자"),
     )
-    PROCESS_CHOICE = (
-    )
-
     type = models.CharField(help_text='계정 유형', max_length=20, choices=USERTYPE, default='SUPERVISOR')
-    process = models.CharField(help_text='작업 공정', max_length=20, choices=PROCESS_CHOICE, null=True, blank=True, )
     is_activate = models.BooleanField(help_text='계정 활성화 여부', null=True, blank=True)
 
     class Meta:

@@ -96,7 +96,6 @@ class UserUpdateForm(forms.ModelForm):
             'username',
             'password',
             'type',
-            'process',
         )
         widgets = {
             'username': forms.TextInput(
@@ -116,14 +115,8 @@ class UserUpdateForm(forms.ModelForm):
                     'class': 'form-control',
                 }
             ),
-            'process': forms.Select(
-                attrs={
-                    'class': 'form-control',
-                }
-            )
         }
         labels = {
             'username': "사용자 이름",
             'type': '계정 유형',
-            'process': '공정 타입',
         }

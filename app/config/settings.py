@@ -33,8 +33,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
+    'django.contrib.sites',
+    'django.contrib.humanize',
 
     'system',
+    'posts',
 
     'bootstrap3',
 ]
@@ -107,13 +111,15 @@ TIME_ZONE = 'Asia/Seoul'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'system.User'
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '.media')
+
+SITE_ID = 1
+
 BOOTSTRAP3 = {
     'include_jquery': True,
 }
@@ -121,9 +127,3 @@ BOOTSTRAP3 = {
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
-# CORS_ORIGIN_ALLOW_ALL = True
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-    ),
-}
