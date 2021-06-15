@@ -1,0 +1,22 @@
+.form-group-box {
+    width:100%;
+    overflow: hidden;
+    display:flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom:15px;
+}
+.form-group-box .form-group {
+    width:68%;
+    margin:0;
+}
+.form-group-box .form-group:last-of-type {
+    width:18%;
+}
+form > .form-group:first-of-type .field-label::before {
+    content:'*';
+    display:inline-block;
+    vertical-align: middle;
+    color:red;
+    margin-right:3px;
+}

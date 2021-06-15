@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}사용자 추가{% endblock %}
+{% block contents %}
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'css/account/add_account.css' %}">#}
+    {#    <script type="text/javascript" src="{% static 'js/account/base_script.js' %}"></script>#}
+
+
+    <div class="row">
+        <div class="col col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
+            {{ error }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+            <p class="reqMsg">* 표시된 정보는 필수 사항 입니다.</p>
+            <form method="POST">
+                {% csrf_token %}
+                {% for field in form %}
+                    {% if field.label == "계정 활성화 여부" %}
+                        <div class="form-group">
+                            <span class="form-name">계정 활성화 여부</span>
+                            <label class="switch">
+                                <input type="checkbox" class="switch_input" id="is_activate" name="is_activate"
+                                       value="True">
+                                <span class="stat on">ON</span>
+                                <span class="stat off">OFF</span>
+                                <span class="handle"></span>
+                            </label>
+                        </div>
+                    {% else %}
+                        <div class="form-group">
+                            <span class="field-label">{{ field.label }}</span>
+                            {{ field }}
+                        </div>
+                    {% endif %}
+                    {% if field.errors %}
+                        <span style="color: red">{{ field.errors }}</span>
+                    {% endif %}
+                {% endfor %}
+
+                <div class="regBtnWrap">
+                    <button type="submit" class="btn btn-primary" style="float: right;">등록</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

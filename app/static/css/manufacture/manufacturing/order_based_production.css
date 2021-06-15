@@ -1,0 +1,19 @@
+.due_date {
+    float: right;
+    font-size: 16px;
+    border: 1px solid #afafaf;
+    height: 100%;
+    margin-right: 20px;
+    padding-left: 10px;
+}
+
+.label_tag {
+    float: right;
+    font-weight: normal;
+    font-size: 16px;
+    margin: 0;
+    line-height: 40px;
+    padding: 0 16px;
+    background: #585858;
+    color: white;
+}

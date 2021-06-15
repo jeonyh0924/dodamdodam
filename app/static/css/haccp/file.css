@@ -1,0 +1,111 @@
+.gray_bg {
+    background-color: #555555;
+    color: white;
+}
+
+.file6 {
+    background-color: #3c3c3c;
+    color: white;
+}
+
+.p_row {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.p_row + .p_row {
+    border-top: 1px solid #ddd;
+}
+
+.bot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    padding: 5px 8px;
+}
+
+.topBtnWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.topBtnWrap .topBtn {
+    display: inline-block;
+    padding: 8px 20px;
+    color: white;
+    border-radius: 3px;
+    box-shadow: 0 0 5px #b9b9b9;
+    cursor: pointer;
+}
+
+.topBtn.add {
+    background-color: #5aa5f3;
+}
+
+.topBtn.remove {
+    background-color: #ff0000;
+}
+
+.tableHeader {
+    font-size: 40px;
+    border: solid #cccccc;
+}
+
+.OrangetableHeaderFile {
+    font-size: 40px;
+    border: solid #0f0f0f;
+    background-color: #eea236;
+}
+
+
+.tableHeaderMargin {
+    margin-top: 50px;
+}
+
+.group_p_tag3 {
+    display: inline-block;
+    padding: 10px 30px;
+    box-sizing: border-box;
+    font-size: 15px;
+    color: white;
+    background: green;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.check_div input, .check_div span {
+    vertical-align: middle;
+}
+
+.check_div + .check_div {
+    margin-top: 5px;
+}
+
+.row_data + .row_data {
+    border-top: none !important;
+}
+
+.rowText {
+    text-align: left;
+}
+
+.theadDate {
+    width: 120px;
+}
+
+table > thead > tr > th {
+    text-align: center;
+}
+
+.row_content {
+    text-align: left;
+}
+
+.td_flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

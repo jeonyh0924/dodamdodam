@@ -1,0 +1,9 @@
+form > .form-group:first-of-type .field-label::before,
+form > .form-group:nth-of-type(2) .field-label::before,
+form > .form-group:nth-of-type(5) .field-label::before {
+    content:'*';
+    display:inline-block;
+    vertical-align: middle;
+    color:red;
+    margin-right:3px;
+}

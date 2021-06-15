@@ -1,0 +1,23 @@
+.table {
+    margin-top:20px;
+}
+.table tr th {
+    background:#f5f5f5;
+}
+.table tr th,
+.table tr td {
+    text-align: left;
+}
+.filebox {
+    text-align: center;
+}
+.filebox .upload-name {
+    margin-left:0;
+}
+
+.reqMsgBox {
+    margin:10px 0 0 0;
+}
+.reqMsgBox .reqMsg {
+    padding-left:40px;
+}

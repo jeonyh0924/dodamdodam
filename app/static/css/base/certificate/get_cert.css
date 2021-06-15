@@ -1,0 +1,37 @@
+.table tr th {
+    text-align: center;
+    background:#f5f5f5;
+    position: relative;
+}
+.table tr td {
+    text-align: center;
+}
+.cert_img_box {
+    text-align: center;
+}
+.cert_img {
+    max-width:100%;
+}
+.none_img {
+    text-align: center;
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    height:100px;
+}
+.table tr th a {
+    position: absolute;
+    right:10px;
+    top:calc(50% - 14px);
+    background:#238bf7;
+    color:white;
+    width:100px;
+    height:28px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: normal;
+}
+.pdfobject-container {
+    height:500px;
+}

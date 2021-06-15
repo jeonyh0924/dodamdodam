@@ -1,0 +1,11 @@
+/* 패드 환경 */
+.pad-worker-nav .pos {
+    display:none;
+}
+.pad .btn {
+    padding:10px 32px;
+    font-size:15px;
+}
+.pad .form-control {
+    height:46px;
+}

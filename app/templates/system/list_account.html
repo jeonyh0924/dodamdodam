@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}사용자 목록{% endblock %}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block contents %}
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'css/system/account/get_accounts.css' %}">#}
+    <script type="text/javascript" src="{% static 'js/system/user/get_accounts_script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/tablesorter.js' %}"></script>
+
+
+    {% csrf_token %}
+    <div class="listView">
+        <div class="row ">
+            <div class="col col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 includeCheckBox">
+                <div class="listTopBtn">
+                    <div class="right">
+                        <button id="checkAll" class="listTopBtn__chk checkAll">전체 선택</button>
+                        <button id="delBtn" class="listTopBtn__del delBtn" onclick="delModalShow()" disabled>사용자 정보 삭제</button>
+                    </div>
+                </div>
+                <table class="table table-bordered" id="myTable" role="grid">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="24%">
+                        <col width="18%">
+                        <col width="18%">
+                        <col width="10%">
+                        <col width="10%">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>사용자 계정 <span class="glyphicon glyphicon-sort"></span></th>
+                        <th>이름 <span class="glyphicon glyphicon-sort"></span></th>
+                        <th>계정 유형 <span class="glyphicon glyphicon-sort"></span></th>
+                        <th>작업 공정 <span class="glyphicon glyphicon-sort"></span></th>
+                        <th>관리자 여부</th>
+                        <th>활성화 여부</th>
+                    </tr>
+                    </thead>
+                    <tbody aria-live="polite" aria-relevant="all">
+                    {% for account in user_lst %}
+                        <tr>
+                            {% if not account.username == 'dkinno' %}
+                                <td>
+                                    {% if user.type == '최고 담당자' %}
+                                        <a href="{% url 'system:user-update' pk=account.pk %}">{{ account.id }}</a>
+                                        <input type="checkbox" name="accountCheck" value="{{ account.id }}"
+                                               class="hidden_chk">
+                                    {% else %}
+                                        {{ account.id }}
+                                        <input type="checkbox" name="accountCheck" value="{{ account.id }}"
+                                               class="hidden_chk">
+                                    {% endif %}
+                                </td>
+                                <td>{{ account.username }}</td>
+                                <td>{{ account.type }}</td>
+                                <td>
+                                    {% if account.process == None %}
+                                    {% else %}
+                                        {{ account.process }}
+                                    {% endif %}
+                                </td>
+                                {% if account.type == 'SUPERVISOR' %}
+                                    <td><span class="glyphicon glyphicon-ok"></span></td>
+                                {% else %}
+                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                {% endif %}
+                                {% if account.is_activate == True %}
+                                    <td><span class="glyphicon glyphicon-ok"></span></td>
+                                {% else %}
+                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                {% endif %}
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="delModal" class="deleteModal">
+        <div class="delete-modal-content">
+            <div class="imgBox">
+            </div>
+            <div class="deleteCont">
+                <p class="delMessage">정말 삭제하시겠습니까?</p>
+                <p class="delSubMessage">한 번 삭제된 데이터는 복원이 불가능합니다.</p>
+            </div>
+            <div class="modalBtnWrap">
+                <span class="modalBtn yes" onclick="infoDel('account');">예</span>
+                <span class="modalBtn no" onclick="closeDelModal();">아니오</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

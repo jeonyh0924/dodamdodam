@@ -1,0 +1,17 @@
+.scroll {
+    width: 100%;
+    overflow-x: scroll;
+}
+
+#myTable {
+    width: 4000px;
+}
+
+#myTable2 {
+    width: 2500px;
+}
+
+
+#myTable3 {
+    width: 2000px;
+}

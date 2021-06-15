@@ -1,0 +1,7 @@
+.table th, .table td {
+    border: 1px !important;
+}
+
+.fixed-table-container {
+    border: 0px !important;
+}

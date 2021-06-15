@@ -1,0 +1,69 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script type="text/javascript" src="{% static 'js/common/jquery-latest.js' %}"></script>
+
+    {# jquery#}
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/bootstrap-theme.min.css' %}">
+    <script type="text/javascript" src="{% static 'js/common/bootstrap.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/common/moment-with-locales.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/bootstrap-datetimepicker.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/common/jquery.tablesorter.combined.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/jquery.tablesorter.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/jquery.tablesorter.widgets.min.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/tableexport.css' %}">
+
+    <script type="text/javascript" src="{% static 'js/common/xlsx.core.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/Blob.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/FileSaver.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/tableexport.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/Chart.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/chartjs-plugin-datalabels.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/jszip.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/jszip-utils.min.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    <script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/pdfobject.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/common/exceljs.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/table2excel.core.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/choices.min.css' %}">
+    <script type="text/javascript" src="{% static 'js/common/choices.min.js' %}"></script>
+
+
+    {% load bootstrap3 %} {# imports bootstrap3 #}
+    {% bootstrap_css %} {# Embeds Bootstrap CSS #}
+    {% block extrahead %}       {# Embeds Extra Resources #}
+    {% endblock %}              {# Ends Extra Resources #}
+    {% block header %}
+    {% endblock %}
+</head>
+
+<body>
+{% include "nav.html" %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-lg-12 text-center">
+            <h1>{% block title %}(no title){% endblock %}</h1>
+        </div>
+    </div>
+    {% block contents %}
+    {% endblock %}
+</div>
+</body>
+</html>

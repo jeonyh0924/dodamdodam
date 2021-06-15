@@ -1,0 +1,4 @@
+#table1 > thead > tr > th {
+    background-color: #555555;
+    color: white;
+}

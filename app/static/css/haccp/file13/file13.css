@@ -1,0 +1,29 @@
+.tableTitle {
+    border-top: solid;
+    border-left: solid;
+    border-right: solid;
+    margin-bottom: 0px
+}
+
+.thead {
+    border-bottom-width: 1rem;
+    border-bottom-color: black;
+    border-bottom-style: double;
+    border-left: solid;
+    border-top: solid;
+    border-right: solid
+}
+
+.theadDate {
+    width: 120px;
+}
+
+#table1 {
+    margin-bottom: 0px;
+    border-left: solid;
+    border-right: solid;
+}
+
+.rowText {
+    text-align: left;
+}
