@@ -33,30 +33,16 @@ class LoginForm(forms.Form):
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'password', 'is_activate', 'type', ]
+        fields = ['username', 'password', 'is_activate', ]
 
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control'}),
             'password': forms.PasswordInput(attrs={'class': 'form-control'}),
-            'type': forms.Select(
-                attrs={
-                    'class': 'form-control',
-                }
-            ),
-            'process': forms.Select(
-                attrs={
-                    'class': 'form-control'
-                },
-                choices=(('N/A', '해당 없음'),)
-            ),
             'is_activate': forms.CheckboxInput(attrs={'class': 'form-control'}),
         }
         labels = {
             'username': '사용자 계정',
             'password': '비밀번호',
-            # 'email': '이메일',
-            'type': '계정 유형',
-            'process': '작업 공정',
             'is_activate': '계정 활성화 여부',
         }
 
@@ -95,7 +81,6 @@ class UserUpdateForm(forms.ModelForm):
         fields = (
             'username',
             'password',
-            'type',
         )
         widgets = {
             'username': forms.TextInput(
@@ -118,5 +103,4 @@ class UserUpdateForm(forms.ModelForm):
         }
         labels = {
             'username': "사용자 이름",
-            'type': '계정 유형',
         }

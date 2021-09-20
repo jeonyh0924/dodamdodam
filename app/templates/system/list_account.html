@@ -43,15 +43,9 @@
                         <tr>
                             {% if not account.username == 'dkinno' %}
                                 <td>
-                                    {% if user.type == '최고 담당자' %}
-                                        <a href="{% url 'system:user-update' pk=account.pk %}">{{ account.id }}</a>
-                                        <input type="checkbox" name="accountCheck" value="{{ account.id }}"
-                                               class="hidden_chk">
-                                    {% else %}
-                                        {{ account.id }}
-                                        <input type="checkbox" name="accountCheck" value="{{ account.id }}"
-                                               class="hidden_chk">
-                                    {% endif %}
+                                    <a href="{% url 'system:user-update' pk=account.pk %}">{{ account.id }}</a>
+                                    <input type="checkbox" name="accountCheck" value="{{ account.id }}"
+                                           class="hidden_chk">
                                 </td>
                                 <td>{{ account.username }}</td>
                                 <td>{{ account.type }}</td>

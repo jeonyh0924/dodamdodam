@@ -21,3 +21,5 @@ def post_create(request):
 class PostListView(ListView):
     model = Post
     template_name = 'posts/post_list.html'
+
+
