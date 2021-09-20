@@ -16,7 +16,8 @@
                 <div class="listTopBtn">
                     <div class="right">
                         <button id="checkAll" class="listTopBtn__chk checkAll">전체 선택</button>
-                        <button id="delBtn" class="listTopBtn__del delBtn" onclick="delModalShow()" disabled>사용자 정보 삭제</button>
+                        <button id="delBtn" class="listTopBtn__del delBtn" onclick="delModalShow()" disabled>사용자 정보 삭제
+                        </button>
                     </div>
                 </div>
                 <table class="table table-bordered" id="myTable" role="grid">
@@ -24,16 +25,14 @@
                         <col width="20%">
                         <col width="24%">
                         <col width="18%">
-                        <col width="18%">
-                        <col width="10%">
-                        <col width="10%">
+                        <col width="23%">
+                        <col width="15%">
                     </colgroup>
                     <thead>
                     <tr>
                         <th>사용자 계정 <span class="glyphicon glyphicon-sort"></span></th>
                         <th>이름 <span class="glyphicon glyphicon-sort"></span></th>
                         <th>계정 유형 <span class="glyphicon glyphicon-sort"></span></th>
-                        <th>작업 공정 <span class="glyphicon glyphicon-sort"></span></th>
                         <th>관리자 여부</th>
                         <th>활성화 여부</th>
                     </tr>
@@ -41,7 +40,7 @@
                     <tbody aria-live="polite" aria-relevant="all">
                     {% for account in user_lst %}
                         <tr>
-                            {% if not account.username == 'dkinno' %}
+                            {% if not account.type == 'SUPERVISOR' %}
                                 <td>
                                     <a href="{% url 'system:user-update' pk=account.pk %}">{{ account.id }}</a>
                                     <input type="checkbox" name="accountCheck" value="{{ account.id }}"
@@ -49,12 +48,24 @@
                                 </td>
                                 <td>{{ account.username }}</td>
                                 <td>{{ account.type }}</td>
+                                {% if account.type == 'SUPERVISOR' %}
+                                    <td><span class="glyphicon glyphicon-ok"></span></td>
+                                {% else %}
+                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                {% endif %}
+                                {% if account.is_activate == True %}
+                                    <td><span class="glyphicon glyphicon-ok"></span></td>
+                                {% else %}
+                                    <td><span class="glyphicon glyphicon-remove"></span></td>
+                                {% endif %}
+                            {% else %}
                                 <td>
-                                    {% if account.process == None %}
-                                    {% else %}
-                                        {{ account.process }}
-                                    {% endif %}
+                                    {{ account.id }}
+                                    <input type="checkbox" name="accountCheck" value="{{ account.id }}"
+                                           class="hidden_chk">
                                 </td>
+                                <td>{{ account.username }}</td>
+                                <td>{{ account.type }}</td>
                                 {% if account.type == 'SUPERVISOR' %}
                                     <td><span class="glyphicon glyphicon-ok"></span></td>
                                 {% else %}

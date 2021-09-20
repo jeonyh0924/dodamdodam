@@ -1,77 +1,119 @@
 {% extends 'base.html' %}
+{% block title %}게시글 상세{% endblock %}
+
 {% load static %}
-{% block content %}
-<div>
+{% load bootstrap3 %}
+{% block contents %}
+{#    <div id="post-{{ post.pk }}" class="col col-lg-12">#}
+{#        <div class="card">#}
+{#            <div class="card-header">#}
+{#                {{ post.title }}#}
+{#            </div>#}
+{#            <table class="table">#}
+{#                <thead>#}
+{#                <tr>#}
+{#                    <th scope="col">{{ post.user.first_name }}</th>#}
+{#                    <th scope=" col">{{ post.created_at }}</th>#}
+{#                    <th scope="col">{{ post.id }}</th>#}
+{#                </tr>#}
+{#                </thead>#}
+{#            </table>#}
+{#            <div class="card-body">#}
+{#                <img src="{{ post.image.url }}" class="card-img-top">#}
+{#                <p class="card-text">{{ post.content }}</p>#}
+{#                <p class="card-footer">{{ post.html|safe }}</p>#}
 
-    <div id="post-{{post.pk}}" class="col col-lg-12">
-        <div class="card">
-            <div class="card-header">
-                {{post.title}}
-            </div>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">
-                        <span>
-                            <a href="#">
-                                <img src="{{ post.user.img_profile_url }}"
-                                     style="width: 30px; height: 30px; border-radius: 100%;">
-                            </a>
-                        </span>
-                    </th>
-                    <th scope="col">{{post.user.first_name}}</th>
-                    <th scope=" col">{{post.created_at}}</th>
-                    <th scope="col">{{post.id}}</th>
-                </tr>
-                </thead>
-            </table>
-            <div class="card-body">
-                <img src="{{ post.image.url}}" class="card-img-top">
-                <p class="card-text">{{post.content}}</p>
-                <p class="card-footer">{{post.html|safe}}</p>
+{#                <ul class="list-group">#}
+{#                    {% for comment in post.comment_set.all %}#}
+{#                        <li class="list-group-item ">#}
+{#                            <strong>{{ comment.author }}</strong>#}
+{#                            <span>{{ comment.html|safe }}</span>#}
+{##}
+{#                        </li>#}
+{#                    {% endfor %}#}
+{#                    {% if user.is_authenticated %}#}
+{#                        <form action="{% url 'posts:post-like-toggle' post_pk=post.pk %}" method="POST">#}
+{#                            {% csrf_token %}#}
+{#                            <button class="btn btn-primary" type="submit">#}
+{#                                {% if user in post.like_users.all %}#}
+{#                                    좋아요 해제#}
+{#                                {% else %}#}
+{#                                    좋아요#}
+{#                                {% endif %}#}
+{#                            </button>#}
+{#                        </form>#}
+{#                    {% endif %}#}
 
-            <ul class="list-group">
-                    {% for comment in post.comment_set.all %}
-                    <li class="list-group-item ">
-                        <strong>{{ comment.author}}</strong>
-                        <span>{{ comment.html|safe}}</span>
+{#                    <div>#}
+{#                        <span>좋아하는 사람 </span>#}
+{#                        <strong>{{ post.like_users.count }}</strong>#}
+{#                    </div>#}
 
-                    </li>
-                    {% endfor %}
-                    {% if user.is_authenticated %}
-                    <form action="{% url 'posts:post-like-toggle' post_pk=post.pk %}" method="POST">
-                        {% csrf_token %}
-                        <button class="btn btn-primary" type="submit">
-                            {% if user in post.like_users.all %}
-                            좋아요 해제
-                            {% else %}
-                            좋아요
-                            {% endif %}
-                        </button>
-                    </form>
-                    {% endif %}
-
-                    <div>
-                        <span>좋아하는 사람 </span>
-                        <strong>{{ post.like_users.count }}</strong>
-                    </div>
-
-                </ul>
+{#                </ul>#}
                 <!--댓글 작성 form 구현-->
                 <!-- 유저가 로그인을 한 경우에만 보여지도록 -->
-                {% if user.is_authenticated %}
-                <form action="{% url 'posts:comment-create' post_pk=post.pk %}"
-                      method="POST">
-                    {% csrf_token %}
-                    {{ comment_form.content }}
-                    <button class="btn btn-primary btn-block"
-                            type="submit">댓글 작성
-                    </button>
-                </form>
-                {% endif %}
+{#                {% if user.is_authenticated %}#}
+{#                    <form action="{% url 'posts:comment-create' post_pk=post.pk %}"#}
+{#                          method="POST">#}
+{#                        {% csrf_token %}#}
+{#                        {{ comment_form.content }}#}
+{#                        <button class="btn btn-primary btn-block"#}
+{#                                type="submit">댓글 작성#}
+{#                        </button>#}
+{#                    </form>#}
+{#                {% endif %}#}
             </div>
         </div>
     </div>
+<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">게시글 상세정보</div>
+            <div class="panel-body">
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th><span style="color: red"></span>게시글번호</th>
+                        <td colspan="3">
+                            <input type="text" name="id" value="{{ object.id }}" class="form-control" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><span style="color: red"></span>제목</th>
+                        <td>
+                            <input type="text" class="form-control" name="company" id="company"
+                                   value="{{ object.title }}">
+                        </td>
+                        <th><span style="color: red"></span>작성자</th>
+                        <td><input type="text" class="form-control" name="name" value="{{ object.author }}"></td>
+                    </tr>
+                    <tr>
+                        <th><span style="color: red"></span>생성일자</th>
+                        <td>
+                            <input type="date" class="form-control" name="due_date"
+                                   value="{{ object.created_at|date:'Y-m-d' }}">
+                        </td>
+                        <th><span style="color: red"></span></th>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+                <textarea name="memo" cols="30" rows="10" class="form-control">{{ object.comment }}</textarea>
+                {% if object.photo %}
+                    <div style="display: flex; justify-content: center;">
+                        <img src="{{ object.photo.url }}" alt="" style="width: 1000px; height: 500px; padding: 50px;">
+                    </div>
 
-</div>
+                {% else %}
+                    {#                    <img src="#" alt="" style="width: 100%; height: 400px; padding: 50px;">#}
+                {% endif %}
+                <div class="regBtnWrap">
+                    <div class="td_flex">
+                        <input type="file" accept="image/png" class="form-control" name="image"
+                               style="width: 200px;"
+                               value="{{ object.image }}">
+                        <a href="{% url 'posts:post-update' pk=post.pk %}" class="save btn btn-primary">수정</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

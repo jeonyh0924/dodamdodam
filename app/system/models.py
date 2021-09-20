@@ -8,6 +8,7 @@ class User(AbstractUser):
         ('CONSUMER', '소비자'),
         ("SUPERVISOR", "최고관리자"),
     )
+    type = models.CharField(help_text='계정 유형', max_length=20, choices=USERTYPE, default='SUPERVISOR')
     is_activate = models.BooleanField(help_text='계정 활성화 여부', null=True, blank=True)
 
     class Meta:

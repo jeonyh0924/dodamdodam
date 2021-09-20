@@ -8,6 +8,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100, help_text='제목', )
     comment = models.TextField(max_length=100, help_text='내용', )
     photo = models.ImageField(upload_to="%Y/%m/%d")
+    created_at = models.DateField(auto_now_add=True)
 
     author = models.ForeignKey(
         User,

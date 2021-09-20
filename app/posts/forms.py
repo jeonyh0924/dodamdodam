@@ -100,6 +100,40 @@ class PostForm(forms.ModelForm):
         return post
 
 
+class PostUpdateForm(forms.ModelForm):
+    comment = forms.CharField(
+        label='내용',
+        required=False,
+        widget=forms.Textarea(
+            attrs={
+                'class': 'form-control',
+                'rows': 2,
+            }
+        )
+    )
+
+    class Meta:
+        model = Post
+        fields = [
+            'title',
+            'photo',
+            'comment',
+        ]
+        widgets = {
+            'photo': forms.ClearableFileInput(
+                attrs={
+                    'class': 'form-control-file',
+                }
+            ),
+            'title': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                }
+            )
+
+        }
+
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment

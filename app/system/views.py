@@ -51,9 +51,6 @@ class UserUpdateView(UpdateView):
     form_class = UserUpdateForm
     success_url = reverse_lazy('system:user-list')
 
-    def form_valid(self, form):
-        return super().form_valid(form)
-
 
 def user_create(request):
     if request.method == 'POST':
