@@ -12,12 +12,47 @@ function closeDelModal() {
     }, 400);
 }
 
+function createChoices() {
+    console.log('function createChoices()')
+    var token = $("input[name='csrfmiddlewaretoken']").val();
+    let data = {};
+    let row_data = [];
+    $(".is_chk").each(function () {
+        const id = $(this).find("[name='breadID']").val();
+        console.log('id', id)
+        row_data.push({
+            id: id,
+        })
+    });
+
+    data['row_data'] = row_data
+    console.log(data)
+    $.ajax(
+        {
+            url: "/items/choice/",
+            type: "POST",
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            beforeSend: function (xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", token);
+                    $(".load_bg").addClass('load_display');
+                }
+            },
+            success: function (response) {
+                alert("요청이 수락되었습니다.")
+                location.href = "/items/";
+            },
+            error: function (response) {
+                alert(response.status);
+                console.log(response.responseText);
+            }
+        }
+    );
+}
+
 $(document).ready(function () {
     /* 전체선택 & 각 행 선택 제어 */
-    const delBtn = $(".delBtn");
-    const cancelBtn = $(".cancelBtn");
-    const completeBtn = $(".completeBtn");
-
     let resultSumData = 0;
     let checkList = new Array();
     // table 각 row 클릭 시
@@ -25,6 +60,7 @@ $(document).ready(function () {
         const self = $(this).closest("div");
         const $chk = $(self).find(".hidden_chk");
         const $price = $(self).find(".breadPrice");
+        $(self).addClass("is_chk");
         var breadInsId = $($chk).attr('value');
         var price_var = parseInt($($price).attr('value'));
         console.log('value', breadInsId)
@@ -32,35 +68,12 @@ $(document).ready(function () {
         resultSumData += price_var;
         checkList.push(breadInsId);
         console.log(checkList)
-        document.getElementById('resultSumData').value =resultSumData;
-        // const table_idx = $(self).closest(".table:not('.containsStickyHeaders')").index(".table:not('.containsStickyHeaders')");
-        // console.log('table_idx', table_idx)
-        // console.log('$chk.length', $chk.length)
-        // if ($chk.length > 0) {
-        //     if ($chk.prop("checked")) {
-        //         $chk.prop("checked", false).trigger('change');
-        //         $(self).removeClass("is_chk");
-        //         is_chk_count[table_idx]--;
-        //     } else {
-        //         $chk.prop("checked", true).attr("checked", "checked").trigger('change');
-        //         $(self).addClass("is_chk");
-        //         is_chk_count[table_idx]++;
-        //     }
-        // }
-        //
-        // if (is_chk_count[table_idx] > 0) {
-        //     $(delBtn[table_idx]).removeAttr("disabled");
-        //     $(cancelBtn[table_idx]).removeAttr("disabled");
-        //     $(completeBtn[table_idx]).removeAttr("disabled");
-        // } else {
-        //     $(delBtn[table_idx]).attr("disabled", "disabled");
-        //     $(cancelBtn[table_idx]).attr("disabled", "disabled");
-        //     $(completeBtn[table_idx]).attr("disabled", "disabled");
-        // }
-        if (resultSumData > 10000){
+        document.getElementById('resultSumData').value = resultSumData;
+        if (resultSumData > 10000) {
             var btn_status = document.getElementById('submitBtn');
             btn_status.disabled = true;
         }
 
     });
 });
+

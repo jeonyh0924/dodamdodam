@@ -1024,8 +1024,8 @@ nav .container-fluid {
     background: #f0f6ff !important;
 }
 
-tr.is_chk {
-    background: #ffffe8 !important;
+.is_chk {
+    background: #0e00e0 !important;
 }
 
 .p_row {

@@ -28,6 +28,11 @@ class UserChoices(TimeStampedModel):
         'items.Breads',
         on_delete=models.CASCADE,
     )
-    price = models.PositiveIntegerField(
-        '지불가격',
+    package = models.ForeignKey(
+        'items.Package',
+        on_delete=models.CASCADE
     )
+
+
+class Package(TimeStampedModel):
+    pass

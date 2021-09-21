@@ -7,24 +7,17 @@
     <script type="text/javascript" src="{% static 'js/system/items/get_item_script.js' %}"></script>
 
     {% csrf_token %}
-    <div class="listTopBtn">
-        <div class="right">
-            <button id="checkAll" class="listTopBtn__chk checkAll1">전체 선택</button>
-            <button id="delBtn" class="listTopBtn__del delBtn" onclick="delModalShow()" disabled>사용자 정보 삭제
-            </button>
-        </div>
-    </div>
     <div class="container myTable">
         <div class="row row-offcanvas row-offcanvas-right">
             <div class="col-xs-12 col-sm-9">
                 <div class="jumbotron">
                     <h1>빵묶음 챌린지!</h1>
                     <p>
-                        만원부터 이만원 등 다양한 가격대의 상품을 만들어보세요.
+                        만원의 상품을 만들어보세요.
                     </p>
-                    <div>합계 가격 <input id="resultSumData" placeholder="test" style="color: red" disabled></div>
+                    <div>합계 가격 <input id="resultSumData" placeholder="0" style="color: red" disabled></div>
                     <div>
-                        <button class="btn btn-primary" id="submitBtn">btn</button>
+                        <button class="btn btn-primary" id="submitBtn" onclick="createChoices()">전송</button>
                     </div>
                 </div>
                 <div class="row"></div>
@@ -40,13 +33,18 @@
                             <p class="price">가격 : {{ bread.price }}</p>
                             <input type="checkbox" name="breadPrice" value="{{ bread.price }}"
                                    class="breadPrice hidden">
+                            <input type="text" name="breadID" value="{{ bread.id }}" type="hidden">
                         </div>
                     </div>
                 {% endfor %}
             </div>
             <div class="col-xs-6 col-sm-3 sidebar-offcanvas">
                 <div class="list-group">
-                    <a href="#" class="list-group-item">link</a>
+                    {% for package_ins in package_qs %}
+                        <a href="{% url 'items:package-detail' pk=package_ins.pk %}"
+                           class="list-group-item">{{ package_ins.created_at }} || {{ package_ins.id }}
+                        </a>
+                    {% endfor %}
                 </div>
             </div>
         </div>
