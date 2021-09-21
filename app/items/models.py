@@ -15,6 +15,7 @@ class TimeStampedModel(models.Model):
 class Breads(TimeStampedModel):
     name = models.CharField(max_length=100, help_text='상품 명', )
     desc = models.TextField(help_text='상품설명')
+    price = models.PositiveIntegerField(help_text='상품설명', default=0)
     photo = models.ImageField(upload_to="%Y/%m/%d")
 
 

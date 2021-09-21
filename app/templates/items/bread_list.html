@@ -4,6 +4,8 @@
 {% load static %}
 
 {% block contents %}
+    <script type="text/javascript" src="{% static 'js/system/items/get_item_script.js' %}"></script>
+
     {% csrf_token %}
     <div class="listTopBtn">
         <div class="right">
@@ -20,17 +22,24 @@
                     <p>
                         만원부터 이만원 등 다양한 가격대의 상품을 만들어보세요.
                     </p>
+                    <div>합계 가격 <input id="resultSumData" placeholder="test" style="color: red" disabled></div>
+                    <div>
+                        <button class="btn btn-primary" id="submitBtn">btn</button>
+                    </div>
                 </div>
                 <div class="row"></div>
                 {% for bread in bread_qs %}
-                    <div class="col-xs-6 col-lg-4">
-                        <div class="panel panel-default">
+                    <div class="col-xs-6 col-lg-4 includeCheckBox">
+                        <div class="panel panel-default" value="{{ bread.id }}">
                             <input type="checkbox" name="breadCheck" value="{{ bread.id }}"
                                    class="hidden_chk">
                             <img class="bd-placeholder-img card-img-top" src="{{ bread.photo.url }}" alt="" WIDTH="250"
                                  HEIGHT="225">
-                            <h4>{{ bread.name }}</h4>
-                            {{ bread.desc }}
+                            <h4>{{ bread.name }} || {{ bread.id }}</h4>
+                            <p>{{ bread.desc }}</p>
+                            <p class="price">가격 : {{ bread.price }}</p>
+                            <input type="checkbox" name="breadPrice" value="{{ bread.price }}"
+                                   class="breadPrice hidden">
                         </div>
                     </div>
                 {% endfor %}

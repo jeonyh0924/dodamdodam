@@ -9,6 +9,7 @@ $(document).ready(function () {
 
     // table 각 row 클릭 시
     $(document).on("click", ".includeCheckBox .table tbody tr", function () {
+        console.log('test')
         const self = $(this).closest("tr");
         const $chk = $(self).find(".hidden_chk");
         const table_idx = $(self).closest(".table:not('.containsStickyHeaders')").index(".table:not('.containsStickyHeaders')");
@@ -380,12 +381,10 @@ function removeComma(str) {
 }
 
 function infoDel(obj, target) {
-    console.log('test', obj)
     if ($("input:checkbox[name=" + obj + "Check]:checked").length == 0) return
     var checkList = new Array();
     var token = $("input[name='csrfmiddlewaretoken']").val();
     var type = $(target).closest(".deleteModal").find("[name='type']").val();
-    console.log('test111')
     if (type == 'all') {
         for (var i = 2; i < $('#myTable tr').length; i++) {
             var chk = $('#myTable tr').eq(i).children().find('input[type="checkbox"]').is(':checked');

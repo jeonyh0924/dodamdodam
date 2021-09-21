@@ -5,7 +5,7 @@
 
 {% block contents %}
     {#    <link rel="stylesheet" type="text/css" href="{% static 'css/system/post/get_accounts.css' %}">#}
-    <script type="text/javascript" src="{% static 'js/system/user/get_accounts_script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/system/post/get_post_script.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/tablesorter.js' %}"></script>
 
 
@@ -40,7 +40,7 @@
                         <tr>
                             <td>
                                 <a href="{% url 'posts:post-detail' pk=post.pk %}">{{ post.id }}</a>
-                                <input type="checkbox" name="accountCheck" value="{{ post.id }}"
+                                <input type="checkbox" name="postCheck" value="{{ post.id }}"
                                        class="hidden_chk">
                             </td>
                             <td>{{ post.title }}</td>
