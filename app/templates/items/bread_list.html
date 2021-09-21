@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}제품 목록{% endblock %}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block contents %}
+    {% csrf_token %}
+    <div class="listTopBtn">
+        <div class="right">
+            <button id="checkAll" class="listTopBtn__chk checkAll1">전체 선택</button>
+            <button id="delBtn" class="listTopBtn__del delBtn" onclick="delModalShow()" disabled>사용자 정보 삭제
+            </button>
+        </div>
+    </div>
+    <div class="container myTable">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <div class="col-xs-12 col-sm-9">
+                <div class="jumbotron">
+                    <h1>빵묶음 챌린지!</h1>
+                    <p>
+                        만원부터 이만원 등 다양한 가격대의 상품을 만들어보세요.
+                    </p>
+                </div>
+                <div class="row"></div>
+                {% for bread in bread_qs %}
+                    <div class="col-xs-6 col-lg-4">
+                        <div class="panel panel-default">
+                            <input type="checkbox" name="breadCheck" value="{{ bread.id }}"
+                                   class="hidden_chk">
+                            <img class="bd-placeholder-img card-img-top" src="{{ bread.photo.url }}" alt="" WIDTH="250"
+                                 HEIGHT="225">
+                            <h4>{{ bread.name }}</h4>
+                            {{ bread.desc }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-xs-6 col-sm-3 sidebar-offcanvas">
+                <div class="list-group">
+                    <a href="#" class="list-group-item">link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

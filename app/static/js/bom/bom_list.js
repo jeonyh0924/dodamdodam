@@ -18,7 +18,8 @@ $(document).ready(function() {
         }
     });
     $("#checkAll1").on('click', function () {            //체크박스 올체크
-        var tableTr = $("#myTable tbody tr");
+        var tableTr = $(".panel-default");
+        console.log(tableTr)
         for(var i=0; i<tableTr.length;i++){
             if(tableTr.eq(i).hasClass("filtered") === false) {
                 tableTr.eq(i).children().find('input[type="checkbox"]').prop("checked", this.checked)

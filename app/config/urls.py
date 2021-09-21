@@ -46,6 +46,7 @@ def delete_exec(model, check_list):
 
 def select_del(request):
     delete_exec(
+
         request.POST.get('tableIndex'),
         request.POST.getlist('checkList')
     )
@@ -62,6 +63,7 @@ urlpatterns = [
     path('', UserLoginView.as_view(), name='user-login'),
     path('system/', include('system.urls')),
     path('posts/', include('posts.urls')),
+    path('items/', include('items.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

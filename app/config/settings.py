@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     'system',
     'posts',
+    'items',
 
     'bootstrap3',
 ]
