@@ -4,6 +4,7 @@
 {% load static %}
 {% load bootstrap3 %}
 {% block contents %}
+
     <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
         <div class="panel panel-default">
             <div class="panel-heading">빵 묶음 상세정보</div>
@@ -11,8 +12,35 @@
                 <table class="table table-bordered table-hover">
                     <tr>
                         <th><span style="color: red"></span>묶음 고유 번호</th>
-                        <td colspan="3">
+                        <td>
                             <input type="text" name="id" value="{{ object.id }}" class="form-control" disabled>
+                        </td>
+                        <td colspan="2">
+{#                        {{ package_like_status }}#}
+{#                            {% if object. == 'True' %}#}
+{#                                <form method="post"#}
+{#                                      action="{% url 'items:package-like' %}?previous={% url 'items:package-detail' pk=object.pk %}&package={{ object.pk }}&status=delete">#}
+{#                                    {% csrf_token %}#}
+{#                                    {% if package_like_status %}#}
+{#                                        <button class="btn btn-danger" style="width: 100%" value="{{ object.pk }}">좋아요#}
+{#                                            해제#}
+{#                                        </button>#}
+{#                                    {% else %}#}
+{#                                        <button class="btn btn-primary" style="width: 100%" value="{{ object.pk }}">좋아요#}
+{#                                        </button>#}
+{#                                    {% endif %}#}
+{#                                </form>#}
+{#                            {% else %}#}
+{#                                <form method="post"#}
+{#                                      action="{% url 'items:package-like' %}?previous={% url 'items:package-detail' pk=object.pk %}&package={{ object.pk }}&status=create">#}
+{#                                    {% csrf_token %}#}
+{##}
+{#                                    <button class="btn btn-danger" style="width: 100%" value="{{ object.pk }}">좋아요 해제#}
+{#                                    </button>#}
+{#                                    <button class="btn btn-primary" style="width: 100%" value="{{ object.pk }}">좋아요#}
+{#                                    </button>#}
+{#                                </form>#}
+{#                            {% endif %}#}
                         </td>
                     </tr>
                     <tr>

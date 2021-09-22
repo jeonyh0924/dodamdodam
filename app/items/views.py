@@ -1,11 +1,12 @@
 from datetime import datetime
 
+from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from items.models import Breads, UserChoices, Package
+from items.models import Breads, UserChoices, Package, PackageLike
 
 
 class BreadsListView(ListView):
@@ -37,5 +38,18 @@ class PackageDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['user_choice_qs'] = kwargs.get('object').userchoices_set.all()
-        context['author'] = kwargs.get('object').userchoices_set.first().user.username
+        context['author'] = kwargs.get('object').userchoices_set.first()
         return context
+
+
+class PackageLikeCreateView(APIView):
+    def post(self, request):
+        query_params = request.query_params
+        previous_path = query_params.get('previous')
+        package_pk = query_params.get('package')
+        status = query_params.get('status')
+        package_ins = Package.objects.get(pk=package_pk)
+        ins, created = PackageLike.objects.get_or_create(user=request.user, package=package_ins)
+        if status == 'delete':
+            ins.delete()
+        return redirect(previous_path)

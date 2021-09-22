@@ -36,3 +36,17 @@ class UserChoices(TimeStampedModel):
 
 class Package(TimeStampedModel):
     pass
+
+
+class PackageLike(TimeStampedModel):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+    package = models.ForeignKey(
+        'items.Package',
+        on_delete=models.CASCADE,
+    )
+
+    class Meta:
+        unique_together = ('user', 'package')
